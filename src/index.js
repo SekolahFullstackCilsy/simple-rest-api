@@ -20,6 +20,7 @@ db.sequelize.sync({ force: false }).then(() => {
 
 router.post('/todos', todos.create)
 router.get('/todos', todos.findAll)
+router.get('/todos/:id', todos.findOne)
 
 app.use('/api', router)
 

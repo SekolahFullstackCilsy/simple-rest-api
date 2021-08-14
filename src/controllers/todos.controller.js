@@ -23,8 +23,24 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-
   Todo.findAll({}).then((data) => {
+    res.status(201).send({
+      success: true,
+      message: 'Todo berhasil di ambil',
+      data: data
+    })
+  }).catch((err) => {
+    res.status(500).send({
+      success: false,
+      message: err.message,
+    })
+  })
+}
+
+exports.findOne = (req, res) => {
+  const id = req.params.id
+
+  Todo.findByPk(id).then((data) => {
     res.status(201).send({
       success: true,
       message: 'Todo berhasil di ambil',
